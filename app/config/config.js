@@ -27,7 +27,7 @@
   },...window.config},
   production:{...{
     title: "Escape Room Quiz",
-    primaryColor: "#e84100",
+    primaryColor: "#36a3bf",
     primaryColorText: "#ffffff",
     secondaryColor: "#333333",
     secondaryColorText: "#ffffff",
@@ -35,7 +35,7 @@
     generalTextColor: '#000000',
     logo: undefined,
     moodleXmlPath: undefined,
-    feedback: true,
+    feedback: false,
     randomQuestions: true,
     debug:false,
     debug_scorm_api:false,
