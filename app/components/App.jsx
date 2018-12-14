@@ -39,7 +39,7 @@ export class App extends React.Component {
         <FinishScreen msg={GLOBAL_CONFIG.finalMessage} dispatch={this.props.dispatch} user_profile={this.props.user_profile} tracking={this.props.tracking} quiz={this.state.quiz} config={GLOBAL_CONFIG} I18n={I18n}/>
       );
     }
-
+    console.log(this.state.quiz)
     return (
       <div id="container">
         <SCORM dispatch={this.props.dispatch} tracking={this.props.tracking} config={GLOBAL_CONFIG}/>
@@ -78,18 +78,19 @@ export class App extends React.Component {
         let questions = [];
         for (let q in r.questions) {
           let question = r.questions[q];
+          innerloop:
           switch(question.type) {
             case 'multichoice':
             questions.push({ type: 'multiple_choice', value: question.questiontext, choices: question.answers.map((a,id)=>{return {id, value: a.text, answer: a.score === 100}}), single: question.single})
-            break;
+            break innerloop;
             case 'truefalse':
             questions.push({ type: 'true_false', single: true, value: question.questiontext, answer: question.answers.filter(a=> a.score === 100).map(a=> a.text)[0]})
-            break;
-            default:
-              console.error("Unsupported");
+            break innerloop;
+
           }
         }
-        this.setState({ quiz: {title: "", questions}});
+        console.log(questions)
+        this.setState({ quiz: {title: "", questions: questions}});
       })
     })
   }
